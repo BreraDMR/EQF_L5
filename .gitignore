@@ -1,4 +1,6 @@
 PROCESS_LOG.md
 .DS_Store
 .pio/
+.pioenvs/
+.piolibdeps/
 *.bak
