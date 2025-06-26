@@ -1,10 +1,27 @@
-# EQF Level 5 Qualification Work — ESP32 Air Quality Monitoring & Control System
+<div align="center">
+
+# 🌬️ ESP32 Air-Quality Monitoring & Control System
+
+**EQF Level 5 qualification work — a dual-core ESP32 that senses the air, decides, and drives the ventilation / heating / humidifier itself.**
+
+[![C++](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=white&style=for-the-badge)](firmware/)
+[![ESP32](https://img.shields.io/badge/ESP32-dual--core-E7352C?logo=espressif&logoColor=white&style=for-the-badge)](firmware/)
+[![FreeRTOS](https://img.shields.io/badge/FreeRTOS-1FA2FF?style=for-the-badge)](firmware/)
+[![PlatformIO](https://img.shields.io/badge/PlatformIO-FF7F00?logo=platformio&logoColor=white&style=for-the-badge)](firmware/platformio.ini)
+[![unit tests](https://img.shields.io/badge/unit%20tests-11%2F11%20passing-brightgreen?style=for-the-badge)](firmware/test/)
+[![build](https://img.shields.io/badge/esp32dev-builds-success?style=for-the-badge)](firmware/)
+[![license](https://img.shields.io/badge/license-PolyForm--NC-blue?style=for-the-badge)](LICENSE)
+
+</div>
 
 An automated microprocessor-based system for monitoring and controlling air quality in residential and industrial premises, built around a dual-core ESP32 running FreeRTOS. It combines a BME280 (temperature/humidity/pressure) and an MQ-2 gas/smoke sensor with three opto-isolated relay channels (ventilation, heating, humidification), a 16×2 LCD, a buzzer/LED alarm, and dual telemetry over Bluetooth SPP and MQTT (Home Assistant).
 
 This repository is the English-language, GitHub-formatted version of an EQF Level 5 ("fakhovyi molodshyi bakalavr") qualification work completed at Y. O. Paton Vocational College of Welding and Electronics, specialty 123 Computer Engineering. The original is a Ukrainian-language explanatory note with three engineering drawings; both have been translated, and the firmware described in them has been implemented and flashed to the hardware built for the project.
 
-![Structural diagram](hardware/01-structural-diagram.png)
+<div align="center">
+  <img src="hardware/01-structural-diagram.png" width="780" alt="Structural diagram of the system"/>
+  <br/><sub><b>Structural diagram</b> — sensors → ESP32 control core → relay-driven actuators, with BLE & MQTT telemetry.</sub>
+</div>
 
 ## Why this exists
 
@@ -37,6 +54,13 @@ See [`firmware/README.md`](firmware/README.md) for build instructions and notes 
 - **FreeRTOS task split:** Core 1 — sensor polling, control logic, alarm watchdog, LCD; Core 0 — Bluetooth SPP telemetry, MQTT telemetry, LittleFS event logging. Full table in `docs/thesis.md` §2.4.
 - **Telemetry:** Bluetooth SPP (plain-text line every 5 s, for a phone with no network needed) and MQTT (per-parameter topics under `home/airmonitor/*`, for Home Assistant).
 - **Safety:** PC817 opto-isolation between the ESP32 and the 220 V relay side, RC snubbers on each relay channel, a hardware watchdog and brownout detector, and a LittleFS event log for post-incident diagnosis.
+
+<div align="center">
+  <img src="hardware/02-code-flowchart.png" height="300" alt="Firmware control flowchart"/>
+  &nbsp;&nbsp;
+  <img src="hardware/03-electrical-schematic.png" height="300" alt="Electrical schematic"/>
+  <br/><sub><b>Left:</b> firmware control flowchart &nbsp;·&nbsp; <b>Right:</b> electrical schematic (opto-isolated relay block)</sub>
+</div>
 
 Full derivation of the component choices, the reliability calculation (MTBF ≈ 38,168 h), the power budget (~2.05 W baseline, ~1.64 W with adaptive power saving), and the relay-driver component calculations (R1, base resistor, snubber RC values) are in [`docs/thesis.md`](docs/thesis.md) sections 2.3–2.6.
 
