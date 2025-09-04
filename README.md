@@ -66,4 +66,7 @@ Full derivation of the component choices, the reliability calculation (MTBF ≈ 
 
 ## License
 
-Licensed under [PolyForm Noncommercial 1.0.0](LICENSE) — free for personal, educational, and other noncommercial use. For a commercial license, contact Damir at damir.brera.eb@gmail.com.
+Licensed under [PolyForm Noncommercial 1.0.0](LICENSE) — free for personal,
+educational, and other noncommercial use. Commercial use requires a separate
+license; contact damir.brera.eb@gmail.com.
+
