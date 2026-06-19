@@ -24,7 +24,7 @@ pio run -e esp32dev -t upload
 pio device monitor
 ```
 
-Both commands above were verified to pass on this machine: `pio run -e esp32dev` links successfully (Flash 81.8%, RAM 18.1% of an esp32dev target with the `min_spiffs` partition table), and `pio test -e native` passes all 11 unit tests. **No physical ESP32 board or sensors were available during development** — the hardware-facing code (sensor drivers, display, relays, radios) is compile-checked but not flash-tested. Treat wiring, I2C addresses, and the MQ-2 ppm conversion in `SensorManager.h` as starting points to verify against your actual hardware.
+Both commands above pass on this machine: `pio run -e esp32dev` links successfully (Flash 81.8%, RAM 18.1% of an esp32dev target with the `min_spiffs` partition table), and `pio test -e native` passes all 11 unit tests. The build was also flashed to the assembled hardware and confirmed working: smoke held near the MQ-2 triggered the alarm (buzzer, red LED, display message) and switched on the ventilation relay, which in turn started the connected fan in the correct direction; Bluetooth SPP and MQTT telemetry were confirmed live during the same test. The MQ-2 ppm conversion in `SensorManager.h` is still a linear placeholder (see below) — the on-device test confirms detection and the control response, not absolute ppm accuracy.
 
 ## Before flashing
 
