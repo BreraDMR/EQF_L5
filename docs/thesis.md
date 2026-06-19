@@ -3,7 +3,7 @@
 Qualification work (Fchoval Molodshyi Bakalavr / EQF Level 5), specialty 123 Computer Engineering, study programme "Maintenance of Computer Systems and Networks".
 
 - **Author:** Damir
-- **Group:** KMP-22-2/9
+- **Group:** [redacted]
 - **Academic advisor:** [name redacted]
 - **Institution:** Y. O. Paton Vocational College of Welding and Electronics
 - **Year:** 2026
